@@ -1,6 +1,6 @@
 async function login(event) {
     event.preventDefault();
-    
+
     try {
         // Get user input
         const userEmail = document.getElementById('email').value;
@@ -8,8 +8,8 @@ async function login(event) {
 
         // Create user object
         const loginDetails = {
-            email: userEmail,
-            password: userPassword
+        email: userEmail,
+        password: userPassword
         };
 
         // Make Axios POST request to localhost:2000/user/login
