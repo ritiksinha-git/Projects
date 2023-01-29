@@ -17,7 +17,6 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ message: 'User not authorized' });
         }
-
         // Send response
         res.status(200).json({ message: 'User login successful', user });
     } catch (error) {

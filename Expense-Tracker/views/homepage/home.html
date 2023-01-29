@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/public/css/home.css">
+</head>
+<body>
+    <form id="form-detail" onsubmit="saveToLocalStorage(event)">
+        <h1 class="heading" id="heading">Expense Tracker</h1>
+        <hr class="hr">
+        <label>Expense Amount:</label>
+        <input id = 'amount' type="number" required name="amount"/>
+        <label>Description:</label>
+        <input id = 'description' type="text"  required name="description"/>
+        <label>Choose a Catagory</label> 
+        <select name="category" id="category" required>
+            <option value="" >Select an option</option>
+            <option value="shopping">Shopping</option>
+            <option value="movies">Movies</option>
+            <option value="groceries">Groceries</option>
+            <option value="food">Food</option>
+        </select>
+        <button class="btn" id="btn">Add Expenses</button>
+    </form> 
+    <ul id = 'listOfExpenses'></ul>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script src="/public/js/home.js"></script>
+</body>
+</html>

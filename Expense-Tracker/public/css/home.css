@@ -1,0 +1,117 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    
+    /* Form styles */
+    form {
+    padding: 5px;
+    margin: 20px auto;
+    width: 45%;
+    background-color: white;
+    box-shadow: 0 0 10px #aaa;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    border-radius: 8px;
+    }
+    
+    .heading {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.5em;
+    }
+    
+    .hr {
+    width: 100%;
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+    }
+    
+    label {
+    display: block;
+    font-size: 0.8em;
+    width: 80px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    }
+    
+    input, select {
+    font-size: 0.8em;
+    width: calc(100% - 90px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    }
+    
+    .btn {
+    font-size: 0.8em;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    }
+    
+    /* Expense list styles */
+    ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+    
+    li {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px #ccc;
+    display: flex;
+    justify-content: space-between;
+    }
+    
+    li button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    }
+    
+    #form-detail {
+    width: 49%;
+    margin-right: 1%;
+    padding: 10px;
+    float: right;
+    }
+    
+    #listOfExpenses {
+    width: 40%;
+    padding: 10px;
+    margin: 25px auto;
+    float: right;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    }
