@@ -13,7 +13,8 @@ async function saveToLocalStorage(event) {
   };
   
 try {
-    await axios.post("http://localhost:2000/expense/add-expense", expense);
+    const token= localStorage.getItem('token')
+    await axios.post("http://localhost:2000/expense/add-expense", expense, {headers:{'Authorization': token}});
     refreshExpenses(); 
   } catch (err) {
     console.error(err);
@@ -22,7 +23,8 @@ try {
 
 async function refreshExpenses() {
   try {
-    const res = await axios.get("http://localhost:2000/expense/get-expense");
+    const token= localStorage.getItem('token')
+    const res = await axios.get("http://localhost:2000/expense/get-expense", {headers:{'Authorization': token}});
     il.innerHTML = ''; //clear the current expense list
     for (let i = 0; i < res.data.allExpenses.length; i++) {
       showExpenses(res.data.allExpenses[i]);
@@ -38,7 +40,8 @@ async function refreshExpenses() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await axios.get("http://localhost:2000/expense/get-expense");
+    const token= localStorage.getItem('token')
+    const res = await axios.get("http://localhost:2000/expense/get-expense", {headers:{'Authorization': token}} );
     for (let i = 0; i < res.data.allExpenses.length; i++) {
       showExpenses(res.data.allExpenses[i]);
       refreshExpenses();
@@ -63,7 +66,8 @@ function showExpenses(user){
 
 async function deleteExpense(userId) {
   try {
-    await axios.delete(`http://localhost:2000/expense/delete-expense/${userId}`);
+    const token= localStorage.getItem('token')
+    await axios.delete(`http://localhost:2000/expense/delete-expense/${userId}`, {headers:{'Authorization': token}} );
     removeExpense(userId);
     refreshExpenses();
   } catch (err) {

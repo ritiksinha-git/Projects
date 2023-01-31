@@ -4,7 +4,7 @@ exports.addExpense = async (req, res) => {
   try {
     const { amount, description, category } = req.body;
     // uses the request body object to create new expense using expense model
-    const expense = await Expense.create({ amount, description, category });
+    const expense = await req.user.createExpense({ amount, description, category });
     res.status(201).json({ expense });
   } catch (error) {
     res.status(500).json({ error });
@@ -12,26 +12,24 @@ exports.addExpense = async (req, res) => {
 };
 
 exports.getExpense = async (req, res) => {
-  try {
-    // it retrieves all the expenses with expense model and findall method
-    const expenses = await Expense.findAll();
+    try {
+    const expenses = await Expense.findAll({where: { userId: req.user.id }});
     res.status(200).json({ allExpenses: expenses });
-  } catch (error) {
+    } catch (error) {
     res.status(500).json({ error });
-  }
-};
-
-exports.deleteExpense = async (req, res) => {
-  try {
-    const expenseId = req.params.id; 
-    // it uses expenseId from request paramenters to find the expense by it's primary key
-    const expense = await Expense.findByPk(expenseId);  
+    }
+    };
+    
+    exports.deleteExpense = async (req, res) => {
+    try {
+    const expenseId = req.params.id;
+    const expense = await Expense.findOne({where: {id: expenseId, userId: req.user.id }});
     if (!expense) {
-      return res.status(404).json({ message: "Expense not found" });
+    return res.status(404).json({ message: "Expense not found" });
     }
     await expense.destroy();
     res.status(204).json();
-  } catch (error) {
+    } catch (error) {
     res.status(500).json({ error });
-  }
-};
+    }
+    };

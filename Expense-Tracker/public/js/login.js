@@ -15,6 +15,7 @@ async function login(event) {
         // Make Axios POST request to localhost:2000/user/login
         const response = await axios.post('http://localhost:2000/user/login', loginDetails);
         if (response.status === 200) {
+            localStorage.setItem('token', response.data.token)
             // Redirect to homepage
             window.location.href = "../homepage/home.html"
         } else if(response.status === 401){
