@@ -115,3 +115,33 @@ body {
     border: 1px solid #ccc;
     margin-top: 20px;
     }
+
+    @media (max-width: 767px) {
+        form {
+          width: 90%;
+          float: none;
+          margin: 0 auto;
+        }
+      
+        #form-detail {
+          width: 100%;
+          float: none;
+          margin: 0;
+        }
+      
+        #listOfExpenses {
+          width: 90%;
+          float: none;
+          margin: 25px auto;
+        }
+      
+        label {
+          width: auto;
+          display: inline-block;
+        }
+      
+        input, select {
+          width: 100%;
+        }
+      }
+      

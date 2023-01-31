@@ -25,7 +25,7 @@ async function refreshExpenses() {
     const res = await axios.get("http://localhost:2000/expense/get-expense");
     il.innerHTML = ''; //clear the current expense list
     for (let i = 0; i < res.data.allExpenses.length; i++) {
-      showNewExpenseOnScreen(res.data.allExpenses[i]);
+      showExpenses(res.data.allExpenses[i]);
     }
     // clear form field
     document.getElementById('description').value = '';
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await axios.get("http://localhost:2000/expense/get-expense");
     for (let i = 0; i < res.data.allExpenses.length; i++) {
-      showNewExpenseOnScreen(res.data.allExpenses[i]);
+      showExpenses(res.data.allExpenses[i]);
       refreshExpenses();
     }
   } catch (err) {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-function showNewExpenseOnScreen(user){
+function showExpenses(user){
   document.getElementById('description').value = '';
   document.getElementById('amount').value = '';
   document.getElementById('category').value ='';
@@ -78,5 +78,3 @@ function removeExpense(userid) {
         il.removeChild(expenseToBeDeleted);
     }
 }
-
-
