@@ -4,8 +4,8 @@ const Razorpay = require('razorpay')
 exports.purchasePremium =  (req,res)=>{
     try{
         var rzp = new Razorpay ({
-            key_id: '',
-            key_secret: ''
+            key_id: 'rzp_test_34Ku4liA2SZsNH',
+            key_secret: '1oM3QWOxVeQ4UdouOA5Ix9Sv'
         })
         const amount=1499;
 
