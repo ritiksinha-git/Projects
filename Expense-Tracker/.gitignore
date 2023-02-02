@@ -1,7 +1,7 @@
 node_modules
 package-lock.json
 package.json
-env
 xd.js
 gk.js
 vars
+.env

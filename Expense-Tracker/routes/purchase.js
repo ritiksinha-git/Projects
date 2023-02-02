@@ -5,6 +5,6 @@ const userAuthentication = require('../middlewares/auth');
 
 router.get('/premiummembership', userAuthentication.authenticate, purchaseController.purchasePremium);
 
-router.post('/updatetransactionstatus', userAuthentication.authenticate, purchaseController.updateTranscationStatus);
+router.post('/updatetransctionstatus', userAuthentication.authenticate, purchaseController.updateTranscationStatus);
 
 module.exports = router;

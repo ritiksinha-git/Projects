@@ -1,11 +1,13 @@
 const Order= require("../models/orders")
 const Razorpay = require('razorpay')
+const userController = require('./users')
 
-exports.purchasePremium =  (req,res)=>{
+
+const purchasePremium = async (req,res)=>{
     try{
         var rzp = new Razorpay ({
-            key_id: 'rzp_test_34Ku4liA2SZsNH',
-            key_secret: '1oM3QWOxVeQ4UdouOA5Ix9Sv'
+            key_id: 'rzp_test_vFwmjQQU7P64L3',
+            key_secret: 'vo2dcw0XyH4XbKpLylfwfKdT'
         })
         const amount=1499;
 
@@ -25,14 +27,15 @@ exports.purchasePremium =  (req,res)=>{
     }
 }
 
-exports.updateTranscationStatus = async (req, res, next)=>{
+const updateTranscationStatus = async (req, res, next)=>{
     try{
+        const userId = req.user.id;
         const {payment_id, order_id}=req.body;
         const order= await Order.findOne({ where: {orderid:order_id}})
         const promise1=order.update({paymentid : payment_id, status:'SUCCESSFUL'})
         const promise2=req.user.update({ispremiumuser: true})
         Promise.all([promise1,promise2]).then(()=>{
-            return res.status(201).json({success:true, message:'transcation successful'})
+            return res.status(201).json({success:true, message:'transcation successful', token: userController.accessToken(userId,undefined , true) })
         })
         .catch(err =>{
             throw new Error(err);
@@ -42,4 +45,9 @@ exports.updateTranscationStatus = async (req, res, next)=>{
         console.log(err);
         res.status(401).json({error:err, message:'something went wrong'})
     }
+}
+
+module.exports = {
+    purchasePremium,
+    updateTranscationStatus
 }

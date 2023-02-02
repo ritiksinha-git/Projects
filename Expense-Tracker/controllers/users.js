@@ -2,7 +2,7 @@ const User = require('../models/users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 
-exports.signup = async (req, res) => {
+const signup = async (req, res) => {
   try {
     // Get user input
     const { name, email, password } = req.body;
@@ -28,11 +28,11 @@ exports.signup = async (req, res) => {
   }
 };
 
-function accessToken(id,name){
-  return jwt.sign({userId : id, name:name},  'secretkey')
+const accessToken = (id,name, ispremiumuser) => {
+  return jwt.sign({userId : id, name:name, ispremiumuser},  'secretkey')
 }
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   try {
       // Get user input
       const { email, password } = req.body;
@@ -49,10 +49,17 @@ exports.login = async (req, res) => {
           return res.status(401).json({ message: 'User not authorized' });
       }
       // Send response
-      res.status(200).json({ message: 'User login successful', user, token: accessToken(user.get('id'), user.get('name'))});
+      return res.status(200).json({success: true, message: "User logged in successfully", token: accessToken(user.id, user.name, user.ispremiumuser)})
 
   } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error logging in user' });
   }
 };
+
+
+module.exports = {
+  signup,
+  login,
+  accessToken
+}

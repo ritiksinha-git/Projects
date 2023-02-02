@@ -1,134 +1,130 @@
-/* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  }
-  
-  /* Form styles */
-  form {
-  padding: 5px;
-  margin: 20px auto;
-  width: 45%;
-  background-color: white;
-  box-shadow: 0 0 10px #aaa;
-  max-width: 400px;
+}
+
+.heading {
   text-align: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  float: left;
-  border-radius: 8px;
-  }
-  
-  .heading {
-  text-align: center;
-  margin: 0 auto;
-  font-size: 1.5em;
-  }
-  
-  .hr {
-  width: 100%;
   margin: 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.hr {
   border: 0;
-  border-top: 1px solid #ccc;
-  }
-  
-  label {
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+label {
   display: block;
-  font-size: 0.8em;
-  width: 80px;
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  }
-  
-  input, select {
-  font-size: 0.8em;
-  width: calc(100% - 90px);
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-  }
-  
-  .btn {
-  font-size: 0.8em;
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+input[type="number"],
+input[type="text"],
+select {
   width: 100%;
-  }
-  
-  /* Expense list styles */
-  ul {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#message {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#listOfExpenses,
+#leaderboard {
   list-style: none;
-  padding: 0;
   margin: 0;
-  }
-  
-  li {
+  padding: 0;
+}
+
+#listOfExpenses li,
+#leaderboard li {
   background-color: white;
   padding: 10px;
   margin: 10px 0;
   box-shadow: 0 0 5px #ccc;
   display: flex;
   justify-content: space-between;
-  }
-  
-  li button {
-  background-color: #f44336;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-  }
-  
-  #form-detail {
-  width: 49%;
-  margin-right: 1%;
-  padding: 10px;
-  float: right;
-  }
-  
-  #listOfExpenses {
-  width: 40%;
-  padding: 10px;
-  margin: 25px auto;
-  float: right;
-  border: 1px solid #ccc;
-  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    padding: 10px;
   }
 
-  #rzp-button1 {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  label,
+  input[type="number"],
+  input[type="text"],
+  select,
+  .btn {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .hr {
+    width: 50%;
+    border: 1px solid gray;
+    margin: auto;
+  }
+  
+  @media (max-width: 576px) {
+    label,
+    input[type="number"],
+    input[type="text"],
+    select,
+    .btn {
+      font-size: 16px;
     }
-    
-    #rzp-button1:hover {
-    background-color: #3e8e41;
-    }
-    
+  }
+}  
+
+

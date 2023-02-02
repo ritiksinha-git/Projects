@@ -5,9 +5,9 @@ exports.addExpense = async (req, res) => {
     const { amount, description, category } = req.body;
     // uses the request body object to create new expense using expense model
     const expense = await req.user.createExpense({ amount, description, category });
-    res.status(201).json({ expense });
+    res.status(201).json({ expense, success: true });
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ error: err });
   }
 };
 
@@ -16,7 +16,7 @@ exports.getExpense = async (req, res) => {
     const expenses = await Expense.findAll({where: { userId: req.user.id }});
     res.status(200).json({ allExpenses: expenses });
     } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ error: err });
     }
     };
     
@@ -30,6 +30,6 @@ exports.getExpense = async (req, res) => {
     await expense.destroy();
     res.status(204).json();
     } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({ error: err });
     }
     };
