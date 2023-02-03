@@ -105,24 +105,27 @@ function removeExpense(userid) {
 }
 
 //premium features
-function showLeaderboard(){
-  const inputElement = document.createElement("input")
-  inputElement.type = "button"
-  inputElement.value = 'Show Leaderboard'
-  inputElement.onclick = async() => {
-      const token = localStorage.getItem('token')
-      const userLeaderBoardArray = await axios.get('http://localhost:2000/premium/showLeaderBoard', { headers: {"Authorization" : token} })
-      console.log(userLeaderBoardArray)
+async function showLeaderboard() {
+  const inputElement = document.createElement("input");
+  inputElement.type = "button";
+  inputElement.value = "Show Leaderboard";
+  inputElement.onclick = async () => {
+    const token = localStorage.getItem("token");
+    const { data: userLeaderBoardArray } = await axios.get(
+      "http://localhost:2000/premium/showLeaderBoard",
+      { headers: { Authorization: token } }
+    );
+    console.log(userLeaderBoardArray);
 
-      var leaderboardElem = document.getElementById('leaderboard')
-      leaderboardElem.innerHTML += '<h1> Leader Board </<h1>'
-      userLeaderBoardArray.data.forEach((userDetails) => {
-          leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0} </li>`
-      })
-  }
+    const leaderboardElem = document.getElementById("leaderboard");
+    leaderboardElem.innerHTML = "<h2> Leaderboard </h2>";
+    userLeaderBoardArray.forEach(({ name, total_cost = 0 }) => {
+      leaderboardElem.innerHTML += `<li>Name: ${name} | Total Expense = ${total_cost}</li>`;
+    });
+  };
   document.getElementById("message").appendChild(inputElement);
-
 }
+
 
 document.getElementById('rzp-button1').onclick= async function(e){
   const token= localStorage.getItem('token')
