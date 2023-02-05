@@ -29,3 +29,6 @@ async function login(event) {
     }
     
 }
+function resetPassword() {
+    window.location.href = "../pass/forPassword.html"
+}

@@ -139,11 +139,9 @@ document.getElementById('rzp-button1').onclick= async function(e){
               order_id : options.order_id,
               payment_id : response.razorpay_payment_id,
           } , {headers:{'Authorization': token}} )
-          alert('you are a premium user')
-          document.getElementById('rzp-button1').style.visibility = "hidden"
-         document.getElementById('message').innerHTML = "Premium"
-         localStorage.setItem('token', res.data.token)
+          // alert('you are a premium user')
          showLeaderboard()
+         showPremiumuserMessage()
       }
   }
   const rzp1= new Razorpay(options);
