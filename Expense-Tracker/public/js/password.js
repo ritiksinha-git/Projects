@@ -1,7 +1,7 @@
-function forgotpassword(e) {
-    e.preventDefault();
-    console.log(e.target.name);
-    const form = new FormData(e.target);
+function forgotpassword(event) {
+    event.preventDefault();
+    console.log(event.target.name);
+    const form = new FormData(event.target);
 
     const userDetails = {
         email: form.get("email"),

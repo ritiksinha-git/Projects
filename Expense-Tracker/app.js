@@ -13,13 +13,13 @@ dotenv.config();
 const User = require('./models/users');
 const Expense = require('./models/expense');
 const Order = require('./models/orders');
-const Forgotpassword = require('./models/resetPassword');
+const Forgotpassword = require('./models/forgotpassword');
 
 const userRoutes = require('./routes/users');
 const expenseRoutes = require('./routes/expense');
 const purchaseRoutes = require('./routes/purchase')
 const premiumF = require('./routes/premiumF')
-const resetPassword = require('./routes/resetPassword')
+const resetPasswordRoutes = require('./routes/resetpassword')
 
 var cors = require('cors');
 
@@ -31,7 +31,7 @@ app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);
 app.use('/purchase', purchaseRoutes)
 app.use('/premium', premiumF);
-app.use('/password', resetPassword);
+app.use('/password', resetPasswordRoutes);
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
@@ -40,7 +40,7 @@ User.hasMany(Order);
 Order.belongsTo(User);
 
 User.hasMany(Forgotpassword);
-Forgotpassword.belongsTo(User);
+Forgotpassword.belongsTo(User)
 
 db.sync()
     .then(() => {

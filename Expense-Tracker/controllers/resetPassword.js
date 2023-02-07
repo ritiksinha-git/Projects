@@ -3,7 +3,7 @@ const sgMail = require('@sendgrid/mail');
 const bcrypt = require('bcrypt');
 
 const User = require('../models/users');
-const Forgotpassword = require('../models/resetPassword');
+const Forgotpassword = require('../models/forgotpassword');
 
 const forgotpassword = async (req, res) => {
     try {
@@ -29,7 +29,10 @@ const forgotpassword = async (req, res) => {
             sgMail
             .send(msg)
             .then((response) => {
-                return res.status(202).json({message: 'Link to reset password sent to your mail ', sucess: true})
+
+                // console.log(response[0].statusCode)
+                // console.log(response[0].headers)
+                return res.status(response[0].statusCode).json({message: 'Link to reset password sent to your mail ', sucess: true})
 
             })
             .catch((error) => {
@@ -59,6 +62,7 @@ const resetpassword = (req, res) => {
                                             console.log('called')
                                         }
                                     </script>
+
                                     <form action="/password/updatepassword/${id}" method="get">
                                         <label for="newpassword">Enter New password</label>
                                         <input name="newpassword" type="password" required></input>
@@ -66,7 +70,7 @@ const resetpassword = (req, res) => {
                                     </form>
                                 </html>`
                                 )
-            res.end()
+            // res.end()
 
         }
     })
