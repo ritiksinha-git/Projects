@@ -20,9 +20,9 @@ const forgotpassword = async (req, res) => {
 
             const msg = {
                 to: email, // Change to your recipient
-                from: 'ritikxsinha@outlook.com', // Change to your verified sender
-                subject: 'Sending with SendGrid is Fun',
-                text: 'and easy to do anywhere, even with Node.js',
+                from: 'ritikxsinha@outlook.com',
+                subject: 'Reset Password',
+                text: '--',
                 html: `<a href="http://localhost:2000/password/resetpassword/${id}">Reset password</a>`,
             }
 

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/public/css/home.css">
 </head>
 <body>
+    <div id="container">
     <form id="form-detail" onsubmit="addExpense(event)">
         <h1 class="heading" id="heading">Expense Tracker</h1>
         <hr class="hr">
@@ -24,9 +25,12 @@
     <div id="message"></div>
     <button onclick="download()" id="downloadexpense">Download File</button>
     <button id="rzp-button">Buy Premium</button>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <ul id = 'listOfExpenses'></ul> 
     <ul id="leaderboard"></ul>
+</div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script src="/public/js/home.js"></script>
 </body>

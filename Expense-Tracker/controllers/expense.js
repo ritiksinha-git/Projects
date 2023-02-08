@@ -1,5 +1,27 @@
 const Expense = require('../models/expense');
 
+exports.downloadExpense = async (req, res) => {
+  try {
+    const expenses = await req.user.getExpenses();
+    console.log(expenses)
+
+  //   // Convert expenses data to CSV format
+  //   const fields = ['amount', 'description', 'category'];
+  //   const csv = json2csv({ data: expenses, fields });
+
+  //   // Set the content-type and attachment headers
+  //   res.attachment('expenses.csv');
+  //   res.set('Content-Type', 'text/csv');
+
+  //   // Return the CSV data
+  //   res.send(csv);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};
+
+
+
 exports.addExpense = async (req, res) => {
   try {
     const { amount, description, category } = req.body;
@@ -33,3 +55,6 @@ exports.getExpense = async (req, res) => {
     res.status(500).json({ error: err });
     }
     };
+
+   
+  

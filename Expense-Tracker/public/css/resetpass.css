@@ -71,6 +71,13 @@ body {
     button[type="submit"]:hover {
     background-color: #45a049;
     }
-
+    
+    div[style="color:red;"] {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+      }
+      
     
     

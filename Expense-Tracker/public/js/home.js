@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if(ispremiumuser){
         showPremiumuserMessage()
         showLeaderboard()
+        download()
       }
     const res = await axios.get("http://localhost:2000/expense/get-expense", {headers:{'Authorization': token}} );
     for (let i = 0; i < res.data.allExpenses.length; i++) {
@@ -80,12 +81,21 @@ function showExpenses(user){
   document.getElementById('category').value ='';
 
   const parentNode = document.getElementById('listOfExpenses');
+
+  // Add heading only if it doesn't exist
+  if (!document.getElementById('expenses-heading')) {
+    parentNode.innerHTML = `<li id="expenses-heading">
+                              <b>Expenses</b>
+                            </li>` + parentNode.innerHTML;
+  }
+
   const childHTML = `<li id=${user.id} > ${user.amount} - ${user.description} - ${user.category} 
                          <button onclick=deleteExpense('${user.id}')> Delete Expense </button>
                       </li>`
 
   parentNode.innerHTML += childHTML;
 }
+
 
 async function deleteExpense(userId) {
   try {
@@ -108,7 +118,7 @@ function removeExpense(userid) {
 //premium features
 
 function download(){
-  axios.get('http://localhost:2000/user/download', { headers: {"Authorization" : token} })
+  axios.get('http://localhost:2000/expense/download', { headers: {"Authorization" : token} })
   .then((response) => {
       if(response.status === 201){
           //the bcakend is essentially sending a download link
