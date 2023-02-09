@@ -1,25 +1,22 @@
 const Expense = require('../models/expense');
+const UserServices = require ('../services/userservices')
+const S3Services = require('../services/s3service')
 
 exports.downloadExpense = async (req, res) => {
   try {
-    const expenses = await req.user.getExpenses();
-    console.log(expenses)
-
-  //   // Convert expenses data to CSV format
-  //   const fields = ['amount', 'description', 'category'];
-  //   const csv = json2csv({ data: expenses, fields });
-
-  //   // Set the content-type and attachment headers
-  //   res.attachment('expenses.csv');
-  //   res.set('Content-Type', 'text/csv');
-
-  //   // Return the CSV data
-  //   res.send(csv);
+    const expenses = await UserServices.getExpenses(req);
+    console.log(typeof expenses);
+    // console.log(expenses);
+    
+    const stringifiedExpenses = JSON.stringify(expenses);
+    const userId = req.user.id;
+    const filename = `Expenses${userId}/${new Date()}.txt`;
+    const fileURL = await S3Services.uploadToS3(stringifiedExpenses, filename);
+    res.status(200).json({ fileURL, success: true });
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).json({fileURL: '', success:false, err:err });
   }
 };
-
 
 
 exports.addExpense = async (req, res) => {
@@ -35,26 +32,26 @@ exports.addExpense = async (req, res) => {
 
 exports.getExpense = async (req, res) => {
     try {
-    const expenses = await Expense.findAll({where: { userId: req.user.id }});
-    res.status(200).json({ allExpenses: expenses });
+      const expenses = await Expense.findAll({where: { userId: req.user.id }});
+      res.status(200).json({ allExpenses: expenses });
     } catch (error) {
-    res.status(500).json({ error: err });
-    }
-    };
+      res.status(500).json({ error: err });
+  }
+};
     
-    exports.deleteExpense = async (req, res) => {
+exports.deleteExpense = async (req, res) => {
     try {
-    const expenseId = req.params.id;
-    const expense = await Expense.findOne({where: {id: expenseId, userId: req.user.id }});
+      const expenseId = req.params.id;
+      const expense = await Expense.findOne({where: {id: expenseId, userId: req.user.id }});
     if (!expense) {
-    return res.status(404).json({ message: "Expense not found" });
+      return res.status(404).json({ message: "Expense not found" });
     }
-    await expense.destroy();
-    res.status(204).json();
+      await expense.destroy();
+      res.status(204).json();
     } catch (error) {
-    res.status(500).json({ error: err });
-    }
-    };
+      res.status(500).json({ error: err });
+  }
+};
 
    
   

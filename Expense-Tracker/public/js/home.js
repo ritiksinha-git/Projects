@@ -40,9 +40,19 @@ async function refreshExpenses() {
 }
 
 function showPremiumuserMessage() {
-  document.getElementById('rzp-button').style.visibility = "hidden"
-  document.getElementById('message').innerHTML = "Premium"
+  document.getElementById('rzp-button').style.display = "none";
+  document.getElementById('message').innerHTML = "Premium!";
 }
+
+
+function notPremiumUser () {
+  const isPremium = localStorage.getItem("isPremium");
+  if (!isPremium) {
+    const downloadButton = document.getElementById("downloadexpense");
+    downloadButton.style.visibility = "hidden";
+  }
+}
+
 
 function parseJwt (token) {
   var base64Url = token.split('.')[1];
@@ -58,12 +68,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const token= localStorage.getItem('token')
     const decodeToken = parseJwt(token)
-    console.log(decodeToken)
     const ispremiumuser = decodeToken.ispremiumuser
     if(ispremiumuser){
         showPremiumuserMessage()
         showLeaderboard()
         download()
+      } else {
+        notPremiumUser();
       }
     const res = await axios.get("http://localhost:2000/expense/get-expense", {headers:{'Authorization': token}} );
     for (let i = 0; i < res.data.allExpenses.length; i++) {
@@ -74,6 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(err);
   }
 });
+
 
 function showExpenses(user){
   document.getElementById('description').value = '';
@@ -117,25 +129,28 @@ function removeExpense(userid) {
 
 //premium features
 
-function download(){
-  axios.get('http://localhost:2000/expense/download', { headers: {"Authorization" : token} })
-  .then((response) => {
-      if(response.status === 201){
-          //the bcakend is essentially sending a download link
-          //  which if we open in browser, the file would download
-          var a = document.createElement("a");
-          a.href = response.data.fileUrl;
-          a.download = 'myexpense.csv';
-          a.click();
-      } else {
-          throw new Error(response.data.message)
-      }
 
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-}
+async function download() {
+  try {
+  const token = localStorage.getItem("token");
+  const response = await axios.get(
+  'http://localhost:2000/user/download',
+  { headers: { Authorization: token } }
+  );
+  if (response.status !== 200) {
+    throw new Error(response.data.message);
+  }
+  
+    const a = document.createElement("a");
+    a.href = response.data.fileURL;
+    a.download = "myexpenses.csv";
+    a.click();
+    console.log(a);
+   } catch (err) {
+    console.error(err);
+    }
+  }  
+
 
 async function showLeaderboard() {
   const inputElement = document.createElement("input");
