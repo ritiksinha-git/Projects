@@ -31,13 +31,15 @@ exports.addExpense = async (req, res) => {
 };
 
 exports.getExpense = async (req, res) => {
-    try {
-      const expenses = await Expense.findAll({where: { userId: req.user.id }});
-      res.status(200).json({ allExpenses: expenses });
-    } catch (error) {
-      res.status(500).json({ error: err });
+  try {
+    const expenses = await Expense.findAll({where: { userId: req.user.id }});
+    res.status(200).json({ allExpenses: expenses });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Could not retrieve expenses." });
   }
 };
+
     
 exports.deleteExpense = async (req, res) => {
     try {

@@ -1,36 +1,37 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="/public/css/home.css">
 </head>
 <body>
     <div id="container">
-    <form id="form-detail" onsubmit="addExpense(event)">
-        <h1 class="heading" id="heading">Expense Tracker</h1>
-        <hr class="hr">
-        <label>Expense Amount:</label>
-        <input id = 'amount' type="number" required name="amount"/>
-        <label>Description:</label>
-        <input id = 'description' type="text"  required name="description"/>
-        <label>Choose a Catagory</label> 
-        <select name="category" id="category" required>
-            <option value="" >Select an option</option>
-            <option value="shopping">Shopping</option>
-            <option value="movies">Movies</option>
-            <option value="groceries">Groceries</option>
-            <option value="food">Food</option>
-        </select>
-        <button class="btn" id="btn">Add Expenses</button>
-    </form> 
-    <div id="message"></div>
-    <button onclick="download()" id="downloadexpense">Download File</button>
-    <button id="rzp-button">Buy Premium</button>
-    <ul id = 'listOfExpenses'></ul> 
-    <ul id="leaderboard"></ul>
-</div>
-
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <form id="form-detail" onsubmit="addExpense(event)">
+            <h1 class="heading" id="heading">Expense Tracker</h1>
+            <hr class="hr">
+            <label>Expense Amount:</label>
+            <input id="amount" type="number" required name="amount"/>
+            <label>Description:</label>
+            <input id="description" type="text" required name="description"/>
+            <label>Choose a Category:</label> 
+            <select name="category" id="category" required>
+                <option value="">Select an option</option>
+                <option value="shopping">Shopping</option>
+                <option value="movies">Movies</option>
+                <option value="groceries">Groceries</option>
+                <option value="food">Food</option>
+            </select>
+            <button class="btn" id="btn">Add Expenses</button>
+        </form> 
+        <div id="message"></div>
+        <button onclick="download()" id="downloadexpense">Download File</button>
+        <button id="rzp-button">Buy Premium</button>
+        <ul id="listOfExpenses"></ul> 
+        <ul id="leaderboard"></ul>
+        <div class="pagination" id="pagination"></div>          
+    </div>
     
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script src="/public/js/home.js"></script>
 </body>
