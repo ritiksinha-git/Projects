@@ -150,7 +150,7 @@ async function download() {
     a.href = response.data.fileURL;
     a.download = "myexpenses.csv";
     a.click();
-    console.log(a);
+    // console.log(a);
    } catch (err) {
     console.error(err);
     }
