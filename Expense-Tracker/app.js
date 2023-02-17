@@ -2,16 +2,15 @@ const db = require('./util/database');
 const path = require('path');
 const express = require('express');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const bodyParser = require('body-parser');
 const app = express();
-const dotenv = require('dotenv');
 const helmet = require('helmet');
 const compression = require('compression')
 const morgan = require('morgan')
 const fs = require('fs');
-
-// get config vars
-dotenv.config();
 
 const User = require('./models/users');
 const Expense = require('./models/expense');
