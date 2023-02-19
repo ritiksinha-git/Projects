@@ -2,8 +2,12 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
+    margin: 2px;
+    padding: 0px;
+}
+
+h2 {
+  text-align: center;
 }
 
 hr {
@@ -21,28 +25,12 @@ hr {
     overflow: auto;
   }
   
-  #signup-container h1 {
+  #signup-container h2 {
     text-align: center;
     margin-bottom: 15px;
     margin-top: 0px;
   }
   
-  /* form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
-  
-  /* #name-group,
-  #email-group,
-  #phone-group,
-  #password-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-   */
   label {
     font-weight: bold;
     display: block;

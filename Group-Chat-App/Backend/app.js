@@ -1,20 +1,25 @@
+// connection database
 const db = require('./util/database');
 
 // Import required packages
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const User = require('./models/user')
-const usersRoutes = require('./routes/user');
-
-
-
 // Create an Express application
 const app = express();
 
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// models
+const User = require('./models/user')
+
+// routes
+const usersRoutes = require('./routes/user');
+
 // Configure middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+    origin:'http://127.0.0.1:5500'
+}));
 
 // Configure routes
 app.use('/user', usersRoutes);
