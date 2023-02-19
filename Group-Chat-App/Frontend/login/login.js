@@ -17,7 +17,7 @@ async function login(event) {
         if (response.status === 200) {
             localStorage.setItem('token', response.data.token)
             // Redirect to homepage
-            window.location.href = "../homepage/home.html"
+            window.location.href = "../chat/chat-window.html"
         } else if(response.status === 401){
             alert(response.data.message);
         } else {

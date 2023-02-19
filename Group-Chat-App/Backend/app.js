@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 // connection database
 const db = require('./util/database');
 
@@ -16,6 +19,7 @@ const User = require('./models/user')
 const usersRoutes = require('./routes/user');
 
 // Configure middleware
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors({
     origin:'http://127.0.0.1:5500'
@@ -26,6 +30,7 @@ app.use('/user', usersRoutes);
 
 // Start the server and sync the database
 db.sync()
+// db.sync({force:true})
     .then(() => {
         app.listen(3000);
     })

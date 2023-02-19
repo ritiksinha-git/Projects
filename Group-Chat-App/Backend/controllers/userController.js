@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 // Controller for user sign up
-exports.signup = async (req, res) => {
+const signup = async (req, res) => {
   try {
     const { name, email, phone, password } = req.body;
 
@@ -30,3 +31,40 @@ exports.signup = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+const accessToken = (id, name) => {
+  return jwt.sign({ userId: id, name }, process.env.SECRET_KEY);
+}
+
+
+const login = async (req, res) => {
+  try {
+      // Get user input
+      const { email, password } = req.body;
+
+      // Check if user exists
+      const user = await User.findOne({ where: { email } });
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Compare passwords
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+          return res.status(401).json({ message: 'User not authorized' });
+      }
+      // Send response
+      return res.status(200).json({success: true, message: "User logged in successfully", token: accessToken(user.id, user.name, user.ispremiumuser)})
+
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error logging in user' });
+  }
+};
+
+
+module.exports = {
+  signup,
+  login,
+  accessToken
+}
