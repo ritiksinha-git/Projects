@@ -1,6 +1,5 @@
-// Get the form element and add a submit event listener
-const form = document.querySelector('form');
-form.addEventListener('submit', async (event) => {
+// Define the signupForm function
+function signupForm(event) {
   event.preventDefault(); // prevent the form from submitting in the default way
 
   // Get the input values
@@ -14,13 +13,16 @@ form.addEventListener('submit', async (event) => {
     phone,
     password
   }
-  try {
-    // Make a POST request to the server to submit the form data
-    const response = await axios.post('http://localhost:3000/user/signup', user);
-    
-    // If the server responds with a success message, redirect to the login page
-    window.location.href = '../login/login.html';
-  } catch (error) {
-    console.error(error);
-  }
-});
+  axios.post('http://localhost:3000/user/signup', user)
+    .then(function (response) {
+      // If the server responds with a success message, redirect to the login page
+      window.location.href = '../login/login.html';
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+
+// Get the form element and add a submit event listener
+const form = document.querySelector('form');
+form.addEventListener('submit', signupForm);

@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // connection database
-const db = require('./util/database');
+const db = require('./Backend/util/database');
 
 // Import required packages
 const express = require('express');
@@ -13,10 +13,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // models
-const User = require('./models/user')
+const User = require('./Backend/models/user')
 
 // routes
-const usersRoutes = require('./routes/user');
+const usersRoutes = require('./Backend/routes/user');
 
 // Configure middleware
 app.use(bodyParser.urlencoded({extended:true}));
