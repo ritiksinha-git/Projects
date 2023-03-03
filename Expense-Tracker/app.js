@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 app.use(helmet());
 app.use(compression());
-app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan('combined', {stream: accessLogStream, skip: function (req, res) { return res.statusCode !== 200 }}));
 
 
 app.use('/user', userRoutes);
@@ -61,4 +61,4 @@ db.sync()
     })
     .catch(err => {
         console.log(err);
- })
+ }) 

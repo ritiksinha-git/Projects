@@ -13,20 +13,24 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 // models
-const User = require('./Backend/models/user')
+const User = require('./Backend/models/user');
+const Message = require('./Backend/models/message');
 
 // routes
-const usersRoutes = require('./Backend/routes/user');
+const usersRoutes = require('./Backend/routes/users');
+const chat = require('./Backend/routes/chats')
 
 // Configure middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cors({
-    origin:'http://127.0.0.1:5500'
-}));
+app.use(cors());
 
 // Configure routes
 app.use('/user', usersRoutes);
+app.use('/message', chat)
+
+User.hasMany(Message);
+Message.belongsTo(User);
 
 // Start the server and sync the database
 db.sync()

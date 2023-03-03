@@ -1,43 +1,37 @@
+#chat {
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-      /* Add CSS styling here */
-      #chat-container {
-        height: 300px;
-        width: 500px;
-        background-color: #f1f1f1;
-        overflow-y: scroll;
-      }
+#messages {
+  height: 300px;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-      .message {
-        background-color: #0084ff;
-        color: white;
-        padding: 5px;
-        border-radius: 5px;
-        margin-bottom: 5px;
-      }
+#message-form {
+  display: flex;
+}
 
-      .message.sender {
-        background-color: #4caf50;
-      }
+#message-input {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
 
-      #input-container {
-        margin-top: 10px;
-      }
-
-      #message-input {
-        width: 400px;
-        height: 30px;
-        margin-right: 5px;
-      }
-
-      #send-btn {
-        background-color: #0084ff;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      #send-btn:hover {
-        background-color: #005daa;
-      }
+button {
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
