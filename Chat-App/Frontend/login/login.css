@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.login {
+    width: 380px;
+    max-width: 100%;
+    margin: 6% auto;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 16px;
+    color: #777;
+}
+
+.login label {
+    font-family: "Raleway", sans-serif;
+    font-size: 13pt;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.login input, .login button {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.login input:focus {
+    border-color: dodgerblue;
+}
+
+.login button {
+    font-weight: bold;
+    background-color: peru;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login button:hover {
+    background-color: #cc8f3d;
+}
+
+.forgot-password button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.3s ease-in-out;
+}
+
+.forgot-password button:hover {
+    color: darkblue;
+}
+
+.login a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: blue;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.login a:hover {
+    color: darkblue;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp Signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to ChatApp!</h1>
+        <p>Create your account to start chatting</p>
+    </div>
+    <div class="form-box">
+        <form id="signup-form">
+            <p><label for="name">Username</label></p>
+            <input type="text" id="name" name="name" required>
+            <p><label for="email">Email</label></p>
+            <input type="email" id="email" name="email" required>
+            <p><label for="password">Password</label></p>
+            <input type="password" id="password" name="password" required>
+            <p><label for="phonenumber">Phonenumber</label></p>
+            <input type="tel" id="phonenumber" name="phonenumber" required>
+            <p><button type="submit">Sign Up</button></p>
+        </form>
+        <a href="../login/login.html">Existing User - Login</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script src="signup.js"></script>
+</body>
+</html>

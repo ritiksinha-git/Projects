@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to ChatApp</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login">
+        <div class="header">
+            <h1>Login to ChatApp</h1>
+            <p>Enter your credentials to access your account</p>
+        </div>
+        <form id="login-form" onsubmit="login(event)">
+            <p><label for="email">Enter Email</label></p>
+            <input type="text" id="id1" name="email">
+            <p><label for="password">Enter Password</label></p>
+            <input type="password" id="id2" name="password">
+            <p><button type="submit">Login</button></p>
+        </form>
+        <div class="forgot-password">
+            <button onclick="forgotpassword(event)">Forgot Password</button>
+        </div>
+        <a href="../signup/signup.html">New User - Sign Up</a>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>
